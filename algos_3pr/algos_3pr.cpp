@@ -387,17 +387,17 @@ void convert_AVLTree(BinaryTree* binaryRoot, AVLTree*& avlRoot) {
 }
 
 void show_menu() {
-    cout << "1. Загрузить дерево из файла" << endl;
-    cout << "2. Показать обычное дерево" << endl;
-    cout << "3. Обходы обычного дерева (рекурсивные)" << endl;
-    cout << "4. Создать АВЛ дерево" << endl;
-    cout << "5. Показать АВЛ дерево" << endl;
-    cout << "6. Обходы АВЛ дерева (4 способа)" << endl;
-    cout << "7. Вставить в АВЛ" << endl;
-    cout << "8. Удалить из АВЛ" << endl;
-    cout << "9. Поиск в АВЛ" << endl;
-    cout << "0. Выход" << endl;
-    cout << "Выберите действие: ";
+    cout << "1. Load a tree from a file" << endl;
+ cout << "2. Show a regular tree" << endl;
+ cout << "3. Traversals of a regular tree (recursive)" << endl;
+ cout << "4. Create an AVL tree" << endl;
+ cout << "5. Show an AVL tree" << endl;
+ cout << "6. Traversals of an AVL tree (4 ways)" << endl;
+ cout << "7. Insert into the AVL" << endl;
+ cout << "8. Delete from the AVL" << endl;
+ cout << "9. Search in the AVL" << endl;
+ cout << "0. Exit" << endl;
+ cout << "Select an action: ";
 }
 
 int main() {
