@@ -401,7 +401,7 @@ void show_menu() {
 }
 
 int main() {
-    setlocale(0, "");
+    setlocale(LC_ALL, "Russian");
     BinaryTree* BinaryTree = nullptr;
     AVLTree* AVLTree = nullptr;
     string filename;
