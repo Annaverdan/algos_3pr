@@ -157,7 +157,7 @@ BinaryTree* parseTree(const string& str, size_t& pos) {
 BinaryTree* loadTreeFromFile(const string& filename) {
     ifstream file(filename);
     if (!file) {
-        cout << "Ошибка открытия файла!" << endl;
+        cout << "File opening error!" << endl;
         return nullptr;
     }
 
@@ -166,15 +166,15 @@ BinaryTree* loadTreeFromFile(const string& filename) {
     file.close();
 
     if (!isValidTreeString(line)) {
-        cout << "Неверный формат скобочной записи!" << endl;
+        cout << "Incorrect bracket format!" << endl;
         return nullptr;
     }
 
     size_t pos = 0;
     BinaryTree* root = parseTree(line, pos);
 
-    if (root) cout << "Дерево успешно загружено!" << endl;
-    else cout << "Ошибка парсинга!" << endl;
+    if (root) cout << "The tree has been uploaded successfully!" << endl;
+    else cout << "Parsing error!" << endl;
     return root;
 }
 
@@ -387,23 +387,22 @@ void convert_AVLTree(BinaryTree* binaryRoot, AVLTree*& avlRoot) {
 }
 
 void show_menu() {
-    cout << "1. Load a tree from a file" << endl;
- cout << "2. Show a regular tree" << endl;
- cout << "3. Traversals of a regular tree (recursive)" << endl;
- cout << "4. Create an AVL tree" << endl;
- cout << "5. Show an AVL tree" << endl;
- cout << "6. Traversals of an AVL tree (4 ways)" << endl;
- cout << "7. Insert into the AVL" << endl;
- cout << "8. Delete from the AVL" << endl;
- cout << "9. Search in the AVL" << endl;
- cout << "0. Exit" << endl;
- cout << "Select an action: ";
+    cout << "1. Load tree from file" << endl;
+    cout << "2. Show binary tree" << endl;
+    cout << "3. Binary tree traversals (recursive)" << endl;
+    cout << "4. Create AVL tree" << endl;
+    cout << "5. Show AVL tree" << endl;
+    cout << "6. AVL tree traversals (4 methods)" << endl;
+    cout << "7. Insert into AVL" << endl;
+    cout << "8. Delete from AVL" << endl;
+    cout << "9. Search in AVL" << endl;
+    cout << "0. Exit" << endl;
+    cout << "Choose action: ";
 }
 
 int main() {
-    setlocale(LC_ALL, "Russian");
-    BinaryTree* BinaryTree = nullptr;
-    AVLTree* AVLTree = nullptr;
+    BinaryTree* binaryTree = nullptr;
+    AVLTree* avlTree = nullptr;
     string filename;
     int choice, value;
 
@@ -413,86 +412,86 @@ int main() {
 
         switch (choice) {
         case 1: {
-            cout << "Имя файла: ";
+            cout << "Filename: ";
             cin >> filename;
-            if (BinaryTree) delete_Tree(BinaryTree);
-            BinaryTree = loadTreeFromFile(filename);
+            if (binaryTree) delete_Tree(binaryTree);
+            binaryTree = loadTreeFromFile(filename);
             break;
         }
         case 2: {
-            if (BinaryTree) print_Tree(BinaryTree);
-            else cout << "Дерево не загружено!" << endl;
+            if (binaryTree) print_Tree(binaryTree);
+            else cout << "Tree not loaded!" << endl;
             break;
         }
         case 3: {
-            if (BinaryTree) {
-                cout << "Прямой обход: "; preOrderTravers(BinaryTree); cout << endl;
-                cout << "Симметричный обход: "; inOrderTravers(BinaryTree); cout << endl;
-                cout << "Обратный обход: "; postOrderTravers(BinaryTree); cout << endl;
+            if (binaryTree) {
+                cout << "Pre-order: "; preOrderTravers(binaryTree); cout << endl;
+                cout << "In-order: "; inOrderTravers(binaryTree); cout << endl;
+                cout << "Post-order: "; postOrderTravers(binaryTree); cout << endl;
             }
-            else cout << "Дерево не загружено!" << endl;
+            else cout << "Tree not loaded!" << endl;
             break;
         }
         case 4: {
-            if (BinaryTree) {
-                if (AVLTree) delete_AVLTree(AVLTree);
-                convert_AVLTree(BinaryTree, AVLTree);
-                cout << "АВЛ дерево создано!" << endl;
+            if (binaryTree) {
+                if (avlTree) delete_AVLTree(avlTree);
+                convert_AVLTree(binaryTree, avlTree);
+                cout << "AVL tree created!" << endl;
             }
-            else cout << "Сначала загрузите дерево!" << endl;
+            else cout << "Load tree first!" << endl;
             break;
         }
         case 5: {
-            if (AVLTree) print_AVL(AVLTree);
-            else cout << "АВЛ дерево не создано!" << endl;
+            if (avlTree) print_AVL(avlTree);
+            else cout << "AVL tree not created!" << endl;
             break;
         }
         case 6: {
-            if (AVLTree) {
-                cout << "Обход в ширину: "; breadthFirstAVL(AVLTree); cout << endl;
-                cout << "Прямой обход: "; preOrderAVL(AVLTree); cout << endl;
-                cout << "Симметричный обход: "; inOrderAVL(AVLTree); cout << endl;
-                cout << "Обратный обход: "; postOrderAVL(AVLTree); cout << endl;
+            if (avlTree) {
+                cout << "Breadth-first: "; breadthFirstAVL(avlTree); cout << endl;
+                cout << "Pre-order: "; preOrderAVL(avlTree); cout << endl;
+                cout << "In-order: "; inOrderAVL(avlTree); cout << endl;
+                cout << "Post-order: "; postOrderAVL(avlTree); cout << endl;
             }
-            else cout << "АВЛ дерево не создано!" << endl;
+            else cout << "AVL tree not created!" << endl;
             break;
         }
         case 7: {
-            if (AVLTree) {
-                cout << "Значение: ";
+            if (avlTree) {
+                cout << "Value: ";
                 cin >> value;
-                AVLTree = insertAVL(AVLTree, value);
-                cout << "Вставлено!" << endl;
+                avlTree = insertAVL(avlTree, value);
+                cout << "Inserted!" << endl;
             }
-            else cout << "АВЛ дерево не создано!" << endl;
+            else cout << "AVL tree not created!" << endl;
             break;
         }
         case 8: {
-            if (AVLTree) {
-                cout << "Значение: ";
+            if (avlTree) {
+                cout << "Value: ";
                 cin >> value;
-                AVLTree = deleteAVL(AVLTree, value);
-                cout << "Удалено!" << endl;
+                avlTree = deleteAVL(avlTree, value);
+                cout << "Deleted!" << endl;
             }
-            else cout << "АВЛ дерево не создано!" << endl;
+            else cout << "AVL tree not created!" << endl;
             break;
         }
         case 9: {
-            if (AVLTree) {
-                cout << "Значение: ";
+            if (avlTree) {
+                cout << "Value: ";
                 cin >> value;
-                cout << (searchAVL(AVLTree, value) ? "Найдено!" : "Не найдено!") << endl;
+                cout << (searchAVL(avlTree, value) ? "Found!" : "Not found!") << endl;
             }
-            else cout << "АВЛ дерево не создано!" << endl;
+            else cout << "AVL tree not created!" << endl;
             break;
         }
         case 0: {
-            if (BinaryTree) delete_Tree(BinaryTree);
-            if (AVLTree) delete_AVLTree(AVLTree);
-            cout << "Выход!" << endl;
+            if (binaryTree) delete_Tree(binaryTree);
+            if (avlTree) delete_AVLTree(avlTree);
+            cout << "Exit!" << endl;
             return 0;
         }
-        default: cout << "Неверный выбор!" << endl;
+        default: cout << "Invalid choice!" << endl;
         }
     }
 }
